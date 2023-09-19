@@ -1,65 +1,67 @@
 import java.util.Random;
+
 public class App {
     public static void main(String[] args) throws Exception {
 
-        int lengthsToBeTested[] = { 10,25,50,100,250,500};
-        int percentageToUnlink []={50,60,70,80};
+        int lengthsToBeTested[] = { 10};
+        int percentageToUnlink[] = { 60, 80 };
 
-        /*for (int i : lengthsToBeTested) {
+        for (int i : lengthsToBeTested) {
 
             for (int j : percentageToUnlink) {
                 singleVsDoubleLinkedList(i, j);
             }
+            System.out.println("");
 
-        }*/
-        //DoubleLinkedListTest();
-        LinkedListTest();
+        }
+        // DoubleLinkedListTest();
+        // LinkedListTest();
     }
 
-    public static void singleVsDoubleLinkedList(int lengthOfList, int percentageToUnlink)
-    {
-        Random rand=new Random();
-        int numberOfAttempts=100;
-        long minimumSingle=Long.MAX_VALUE;        
-        long minimumDouble=Long.MAX_VALUE;
+    public static void singleVsDoubleLinkedList(int lengthOfList, int percentageToUnlink) {
+        int numberOfAttempts = 100;
+        long minimumSingle = Long.MAX_VALUE;
+        long minimumDouble = Long.MAX_VALUE;
 
-        int array[]=new int[lengthOfList];
-        int kArray[]=new int[lengthOfList];
-
+        int array[] = new int[lengthOfList];
+        int kArray[] = new int[lengthOfList];
 
         for (int i = 0; i < lengthOfList; i++) {
-            array[i]=i;
-        }        
+            array[i] = i+1;
+        }
 
-        kArray = keyArray(lengthOfList*(percentageToUnlink/100)); 
-        Cell singleArray[]=new Cell[lengthOfList];
-        DoubleLinkedCell doubleArray[]=new DoubleLinkedCell[lengthOfList];
+        kArray = keyArray(lengthOfList);
+        Cell singleArray[] = new Cell[lengthOfList];
+        //DoubleLinkedCell doubleArray[] = new DoubleLinkedCell[lengthOfList];
 
         for (int i = 0; i < lengthOfList; i++) {
-            singleArray[i]=new Cell(array[i],null);
-            doubleArray[i]=new DoubleLinkedCell(array[i],null,null);
+            singleArray[i] = new Cell(array[i], null);
+            //doubleArray[i] = new DoubleLinkedCell(array[i], null, null);
         }
 
         for (int i = 0; i < numberOfAttempts; i++) {
-            LinkedList singleList= new LinkedList();
-            DoubleLinkedList doubleList= new DoubleLinkedList();
+            LinkedList singleList = new LinkedList();
+            //DoubleLinkedList doubleList = new DoubleLinkedList();
             for (int j = 0; j < lengthOfList; j++) {
                 singleList.insert(singleArray[j]);
-                doubleList.insert(doubleArray[j]);
+                //PrintLinkedList(singleList);
+                //doubleList.insert(doubleArray[j]);
             }
 
-            long t0=System.nanoTime();
+            long t0 = System.nanoTime();
             for (int j = 0; j < kArray.length; j++) {
-                
+                //PrintLinkedList(singleList);
                 singleList.unlink(singleArray[kArray[j]]);
+                //PrintLinkedList(singleList);
                 singleList.insert(singleArray[kArray[j]]);
+
             }
-            long t1=System.nanoTime()-t0;
-            if (t1<minimumSingle) {
-                minimumSingle=t1;
+            long t1 = System.nanoTime() - t0;
+            if (t1 < minimumSingle) {
+                minimumSingle = t1;
             }
 
-            t0=System.nanoTime();
+            /*t0 = System.nanoTime();
             for (int j = 0; j < kArray.length; j++) {
 
                 System.out.println("Unlinking" + kArray[j]);
@@ -67,14 +69,15 @@ public class App {
                 doubleList.unlink(doubleArray[kArray[j]]);
                 doubleList.insert(doubleArray[kArray[j]]);
             }
-            t1=System.nanoTime()-t0;
-            if (t1<minimumDouble) {
-                minimumDouble=t1;
-            }
+            t1 = System.nanoTime() - t0;
+            if (t1 < minimumDouble) {
+                minimumDouble = t1;
+            }*/
         }
-        System.out.println("Single List Minimum Time for size :"+lengthOfList +" for percentage :"+ percentageToUnlink+" = "+ minimumSingle+" ns");
-        System.out.println("Double List Minimum Time for size :"+lengthOfList +" for percentage :"+ percentageToUnlink+" = "+ minimumDouble+" ns");
-
+        System.out.println("Single List Minimum Time for size: " + lengthOfList + " for percentage: "
+                + percentageToUnlink + " = " + minimumSingle + " ns");
+        //System.out.println("Double List Minimum Time for size :" + lengthOfList + " for percentage :"
+        //        + percentageToUnlink + " = " + minimumDouble + " ns");
 
     }
 
@@ -83,8 +86,8 @@ public class App {
 
         int[] key = new int[arraySize];
 
-        for (int j = 0; j < key.length-1; j++) {
-            key[j] = rnd.nextInt(10 * arraySize) + 1;
+        for (int j = 0; j < key.length - 1; j++) {
+            key[j] = rnd.nextInt(1 * arraySize);
         }
 
         return key;
@@ -147,31 +150,35 @@ public class App {
 
     public static void LinkedListTest() {
         LinkedList list = new LinkedList();
-        Cell cell1=new Cell(1, null);
-        Cell cell2=new Cell(2, null);
-        Cell cell3=new Cell(3, null);
+        Cell cell1 = new Cell(1, null);
+
+        Cell cell2 = new Cell(2, null);
+
+        Cell cell3 = new Cell(3, null);
 
         list.insert(cell3);
         list.insert(cell2);
-        list.insert(cell3);
+        // list.insert(cell3);
 
         PrintLinkedList(list);
 
-        list.unlink(cell3);
+        list.unlink(cell2);
 
         PrintLinkedList(list);
-        /*LinkedList list2 = new LinkedList();
-        list2.add(6);
-        list2.add(5);
-        list2.add(4);
-
-        list.append(list2);
-        PrintLinkedList(list);
-
-        System.out.println(list.find(2));
-        list.remove(2);
-        PrintLinkedList(list);
-        System.out.println(list.find(2));*/
+        /*
+         * LinkedList list2 = new LinkedList();
+         * list2.add(6);
+         * list2.add(5);
+         * list2.add(4);
+         * 
+         * list.append(list2);
+         * PrintLinkedList(list);
+         * 
+         * System.out.println(list.find(2));
+         * list.remove(2);
+         * PrintLinkedList(list);
+         * System.out.println(list.find(2));
+         */
 
     }
 
@@ -209,7 +216,7 @@ public class App {
         System.out.println("");
     }
 
-        public static void PrintDoubleLinkedList(DoubleLinkedList list) {
+    public static void PrintDoubleLinkedList(DoubleLinkedList list) {
         DoubleLinkedCell nextCell = list.getFirstCell();
         int index = 1;
         while (nextCell != null) {

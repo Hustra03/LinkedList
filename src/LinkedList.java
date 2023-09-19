@@ -17,6 +17,7 @@ public class LinkedList {
     void insert(Cell newFirstCell) {
         newFirstCell.setTail(this.firstCell);
         this.firstCell = newFirstCell;
+
     }
 
     int length() {
@@ -60,19 +61,27 @@ public class LinkedList {
     }
 
     void unlink(Cell item) {
-            Cell nxt = this.firstCell;
-            Cell prv = null;
-            System.out.println("Unlinking"+item.getHead());
+        Cell nxt = this.firstCell;
+        Cell prv = null;
+
+        if (firstCell != item) {
+
             while (nxt.tail != null) {
-                System.out.println("Current "+nxt.getHead());
                 prv = nxt;
                 nxt = nxt.tail;
                 if (nxt == item) {
                     prv.setTail(nxt.getTail());
                     break;
                 }
-                
+
             }
+        } else {
+            if (firstCell.getTail() == null) {
+                this.firstCell = null;
+            } else {
+                this.firstCell = this.firstCell.getTail();
+            }
+        }
     }
 
     void append(LinkedList b) {
