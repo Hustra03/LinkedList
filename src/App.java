@@ -4,7 +4,7 @@ public class App {
     public static void main(String[] args) throws Exception {
 
         int lengthsToBeTested[] = { 10};
-        int percentageToUnlink[] = { 60, 80 };
+        int percentageToUnlink[] = { 3, 6};
 
         for (int i : lengthsToBeTested) {
 
@@ -30,7 +30,7 @@ public class App {
             array[i] = i+1;
         }
 
-        kArray = keyArray(lengthOfList);
+        kArray = keyArray(lengthOfList-percentageToUnlink);
         Cell singleArray[] = new Cell[lengthOfList];
         //DoubleLinkedCell doubleArray[] = new DoubleLinkedCell[lengthOfList];
 
