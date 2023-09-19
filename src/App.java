@@ -75,7 +75,7 @@ public class App {
             }*/
         }
         System.out.println("Single List Minimum Time for size: " + lengthOfList + " for percentage: "
-                + percentageToUnlink + " = " + minimumSingle + " ns");
+                + (lengthOfList-percentageToUnlink) + " = " + minimumSingle + " ns");
         //System.out.println("Double List Minimum Time for size :" + lengthOfList + " for percentage :"
         //        + percentageToUnlink + " = " + minimumDouble + " ns");
 
