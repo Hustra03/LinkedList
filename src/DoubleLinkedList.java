@@ -16,12 +16,17 @@ public class DoubleLinkedList {
 
     void add(int item) {
         DoubleLinkedCell newFirstCell=new DoubleLinkedCell(item, this.firstCell,null);
+        if (this.firstCell!=null) {
+            
         this.firstCell.setPreviousCell(newFirstCell);
+        }
         this.firstCell =newFirstCell;
     }
 
     void insert(DoubleLinkedCell newFirstCell) {
-        this.firstCell.setPreviousCell(newFirstCell);
+        if (this.firstCell!=null) {
+                this.firstCell.setPreviousCell(newFirstCell);
+        }
         newFirstCell.setPreviousCell(null);
         newFirstCell.setTail(this.firstCell);
         this.firstCell =newFirstCell;
@@ -30,9 +35,13 @@ public class DoubleLinkedList {
     int length() {
         int length = 0;
         DoubleLinkedCell nxt = this.firstCell;
-        while (nxt != null) {
+        while (nxt.tail != null) {
             nxt = nxt.tail;
             length++;
+            System.out.println("Current Element "+length+" value"+nxt.getHead());
+            if (length>10) {
+                break;
+            }
         }
         return length;
     }
@@ -67,7 +76,9 @@ public class DoubleLinkedList {
     }
 
     void unlink(DoubleLinkedCell item) {
+        if (item.getPreviousCell()!=null) {
         item.getPreviousCell().setTail(item.getTail());
+        }
         item.getTail().setPreviousCell(item.getPreviousCell());
     }
 
