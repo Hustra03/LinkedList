@@ -157,7 +157,7 @@ public class App {
 
         list.insert(cell2);
         long t0=System.nanoTime();
-        for (int i = 0; i < 20; i++) {
+        for (int i = 0; i < 14; i++) {
             
         list.unlink(cell3);
         list.insert(cell3);
