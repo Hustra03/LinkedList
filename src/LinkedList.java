@@ -80,7 +80,6 @@ public class LinkedList {
                         realTail = realTail.getTail();
                     }
                     prv.setTail(realTail);
-                   // nxt.setTail(null);
                     break;
                 }
 

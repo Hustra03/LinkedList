@@ -30,7 +30,7 @@ public class App {
             array[i] = i+1;
         }
 
-        kArray = keyArray(lengthOfList-(lengthOfList*percentageToUnlink/10));
+        kArray = keyArray(lengthOfList,percentageToUnlink);
         Cell singleArray[] = new Cell[lengthOfList];
         DoubleLinkedCell doubleArray[] = new DoubleLinkedCell[lengthOfList];
 
@@ -78,13 +78,13 @@ public class App {
 
     }
 
-    public static int[] keyArray(int arraySize) {
+    public static int[] keyArray(int arraySize,int percentageToUnlink) {
         Random rnd = new Random();
 
-        int[] key = new int[arraySize];
+        int[] key = new int[arraySize-(arraySize*percentageToUnlink/10)];
 
         for (int j = 0; j < key.length - 1; j++) {
-            key[j] = rnd.nextInt(1 * arraySize);
+            key[j] = rnd.nextInt(arraySize);
         }
 
         return key;

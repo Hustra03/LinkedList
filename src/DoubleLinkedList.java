@@ -44,7 +44,7 @@ public class DoubleLinkedList {
         while (nxt.tail != null) {
             nxt = nxt.tail;
             length++;
-            
+
             if (length > 10) {
                 break;
             }
@@ -96,11 +96,9 @@ public class DoubleLinkedList {
                         realTail = realTail.getTail();
                     }
                     prv.setTail(realTail);
-                    if (realTail!=null) {
-                        
-                    realTail.setPreviousCell(prv);
+                    if (realTail != null) {
+                        realTail.setPreviousCell(prv);
                     }
-                    // nxt.setTail(null);
                     break;
                 }
 
