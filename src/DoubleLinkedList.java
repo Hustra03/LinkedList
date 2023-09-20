@@ -60,7 +60,6 @@ public class DoubleLinkedList {
     void remove(int item) {
 
         if (firstCell.getHead() != item) {
-
             DoubleLinkedCell nxt = this.firstCell;
             while (nxt.tail != null) {
                 nxt = nxt.tail;
