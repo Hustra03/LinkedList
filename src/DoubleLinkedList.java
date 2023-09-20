@@ -24,17 +24,11 @@ public class DoubleLinkedList {
     }
 
     void insert(DoubleLinkedCell newFirstCell) {
-        if (this.firstCell != null && this.firstCell != newFirstCell) {
+        if (this.firstCell != null) {
             this.firstCell.setPreviousCell(newFirstCell);
         }
         newFirstCell.setPreviousCell(null);
-
-        if (this.firstCell != newFirstCell) {
-
-            newFirstCell.setTail(this.firstCell);
-        } else {
-            newFirstCell.setTail(this.firstCell.getTail());
-        }
+        newFirstCell.setTail(this.firstCell); 
         this.firstCell = newFirstCell;
     }
 
