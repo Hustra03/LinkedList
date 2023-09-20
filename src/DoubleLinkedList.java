@@ -1,5 +1,5 @@
 public class DoubleLinkedList {
-    
+
     DoubleLinkedCell firstCell;
 
     public DoubleLinkedList() {
@@ -15,21 +15,27 @@ public class DoubleLinkedList {
     }
 
     void add(int item) {
-        DoubleLinkedCell newFirstCell=new DoubleLinkedCell(item, this.firstCell,null);
-        if (this.firstCell!=null) {
-            
-        this.firstCell.setPreviousCell(newFirstCell);
+        DoubleLinkedCell newFirstCell = new DoubleLinkedCell(item, this.firstCell, null);
+        if (this.firstCell != null) {
+
+            this.firstCell.setPreviousCell(newFirstCell);
         }
-        this.firstCell =newFirstCell;
+        this.firstCell = newFirstCell;
     }
 
     void insert(DoubleLinkedCell newFirstCell) {
-        if (this.firstCell!=null) {
-                this.firstCell.setPreviousCell(newFirstCell);
+        if (this.firstCell != null && this.firstCell != newFirstCell) {
+            this.firstCell.setPreviousCell(newFirstCell);
         }
         newFirstCell.setPreviousCell(null);
-        newFirstCell.setTail(this.firstCell);
-        this.firstCell =newFirstCell;
+
+        if (this.firstCell != newFirstCell) {
+
+            newFirstCell.setTail(this.firstCell);
+        } else {
+            newFirstCell.setTail(this.firstCell.getTail());
+        }
+        this.firstCell = newFirstCell;
     }
 
     int length() {
@@ -38,8 +44,8 @@ public class DoubleLinkedList {
         while (nxt.tail != null) {
             nxt = nxt.tail;
             length++;
-            System.out.println("Current Element "+length+" value"+nxt.getHead());
-            if (length>10) {
+            
+            if (length > 10) {
                 break;
             }
         }
@@ -76,10 +82,36 @@ public class DoubleLinkedList {
     }
 
     void unlink(DoubleLinkedCell item) {
-        if (item.getPreviousCell()!=null) {
-        item.getPreviousCell().setTail(item.getTail());
+        DoubleLinkedCell nxt = this.firstCell;
+        DoubleLinkedCell prv = null;
+
+        if (firstCell != item) {
+
+            while (nxt.tail != null) {
+                prv = nxt;
+                nxt = nxt.tail;
+                if (nxt == item) {
+                    DoubleLinkedCell realTail = nxt;
+                    while (realTail == item) {
+                        realTail = realTail.getTail();
+                    }
+                    prv.setTail(realTail);
+                    if (realTail!=null) {
+                        
+                    realTail.setPreviousCell(prv);
+                    }
+                    // nxt.setTail(null);
+                    break;
+                }
+
+            }
+        } else {
+            if (firstCell == null) {
+                this.firstCell = null;
+            } else {
+                this.firstCell = this.firstCell.getTail();
+            }
         }
-        item.getTail().setPreviousCell(item.getPreviousCell());
     }
 
     public void append(DoubleLinkedList b) {

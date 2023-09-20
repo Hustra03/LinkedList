@@ -15,9 +15,14 @@ public class LinkedList {
     }
 
     void insert(Cell newFirstCell) {
-        newFirstCell.setTail(this.firstCell);
-        this.firstCell = newFirstCell;
 
+        Cell realTail = this.firstCell;
+        while (realTail == newFirstCell) {
+            realTail = realTail.getTail();
+        }
+        newFirstCell.setTail(realTail);
+
+        this.firstCell = newFirstCell;
     }
 
     int length() {
@@ -70,13 +75,18 @@ public class LinkedList {
                 prv = nxt;
                 nxt = nxt.tail;
                 if (nxt == item) {
-                    prv.setTail(nxt.getTail());
+                    Cell realTail = nxt;
+                    while (realTail == item) {
+                        realTail = realTail.getTail();
+                    }
+                    prv.setTail(realTail);
+                   // nxt.setTail(null);
                     break;
                 }
 
             }
         } else {
-            if (firstCell.getTail() == null) {
+            if (firstCell == null) {
                 this.firstCell = null;
             } else {
                 this.firstCell = this.firstCell.getTail();
