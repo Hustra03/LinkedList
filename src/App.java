@@ -3,7 +3,7 @@ import java.util.Random;
 public class App {
     public static void main(String[] args) throws Exception {
 
-        int lengthsToBeTested[] = { 10,20,30,50};
+       /*  int lengthsToBeTested[] = { 10,20,30,50};
         int percentageToUnlink[] = { 3, 6};
 
         for (int i : lengthsToBeTested) {
@@ -13,9 +13,9 @@ public class App {
             }
             System.out.println("");
 
-        }
+        }*/
          //DoubleLinkedListTest();
-        //LinkedListTest();
+        LinkedListTest();
     }
 
     public static void singleVsDoubleLinkedList(int lengthOfList, int percentageToUnlink) {
@@ -154,6 +154,17 @@ public class App {
         Cell cell3 = new Cell(3, null);
 
         list.insert(cell3);
+
+        list.insert(cell2);
+        long t0=System.nanoTime();
+        for (int i = 0; i < 20; i++) {
+            
+        list.unlink(cell3);
+        list.insert(cell3);
+        }
+        System.out.println("Time:"+(System.nanoTime()-t0));
+
+        /*list.insert(cell3);
         list.insert(cell2);
         list.insert(cell1);
 
@@ -167,7 +178,7 @@ public class App {
         list.unlink(cell3);
         list.insert(cell3);
 
-        PrintLinkedList(list);
+        *///PrintLinkedList(list);
         /*list.insert(cell3);
         PrintLinkedList(list);*/
 
