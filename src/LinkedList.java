@@ -15,7 +15,6 @@ public class LinkedList {
     }
 
     void insert(Cell newFirstCell) {
-
         Cell realTail = this.firstCell;
         while (realTail == newFirstCell) {
             realTail = realTail.getTail();

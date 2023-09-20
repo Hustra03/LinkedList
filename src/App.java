@@ -211,18 +211,17 @@ public class App {
 
         DoubleLinkedCell cell3 = new DoubleLinkedCell(3, null,null);
         
-        list.insert(cell3);
 
-        long t0=System.nanoTime();
+        /*long t0=System.nanoTime();
         for (int i = 0; i < 14; i++) {
             
         list.unlink(cell3);
         list.insert(cell3);
         }
-        System.out.println("Time:"+(System.nanoTime()-t0));
+        System.out.println("Time:"+(System.nanoTime()-t0));*/
 
 
-        /*list.insert(cell3);
+        list.insert(cell3);
         list.insert(cell2);
         list.insert(cell1);
 
@@ -237,7 +236,7 @@ public class App {
         list.insert(cell2);
         PrintDoubleLinkedList(list);
         list.insert(cell3);
-        PrintDoubleLinkedList(list);*/
+        PrintDoubleLinkedList(list);
 
 
 

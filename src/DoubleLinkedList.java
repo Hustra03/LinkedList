@@ -82,27 +82,16 @@ public class DoubleLinkedList {
     }
 
     void unlink(DoubleLinkedCell item) {
-        DoubleLinkedCell nxt = this.firstCell;
-        DoubleLinkedCell prv = null;
-
         if (firstCell != item) {
 
-            while (nxt.tail != null) {
-                prv = nxt;
-                nxt = nxt.tail;
-                if (nxt == item) {
-                    DoubleLinkedCell realTail = nxt;
-                    while (realTail == item) {
-                        realTail = realTail.getTail();
-                    }
-                    prv.setTail(realTail);
-                    if (realTail != null) {
-                        realTail.setPreviousCell(prv);
-                    }
-                    break;
-                }
-
-            }
+           DoubleLinkedCell prv= item.getPreviousCell();
+           DoubleLinkedCell nxt= item.getTail();
+           if (nxt!=null) {
+            
+           nxt.setPreviousCell(prv);
+           }
+           prv.setTail(nxt);
+            
         } else {
             if (firstCell == null) {
                 this.firstCell = null;
