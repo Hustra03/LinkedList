@@ -6,14 +6,14 @@ public class App {
         int lengthsToBeTested[] = { 25,50,100,250,1000,2500};
         int percentageToUnlink[] = {4, 5};
 
-        for (int i : lengthsToBeTested) {
+        /*for (int i : lengthsToBeTested) {
 
             for (int j : percentageToUnlink) {
                 singleVsDoubleLinkedList(i, j);
             }
             System.out.println("");
 
-        }
+        }*/
         // DoubleLinkedListTest();
         // LinkedListTest();
     }
@@ -225,6 +225,7 @@ public class App {
         list.insert(cell2);
         list.insert(cell1);
 
+        System.out.print(list.length());
         PrintDoubleLinkedList(list);
 
         list.unlink(cell2);
@@ -233,7 +234,6 @@ public class App {
         list.insert(cell2);
         PrintDoubleLinkedList(list);
         list.unlink(cell3);
-        list.insert(cell2);
         PrintDoubleLinkedList(list);
         list.insert(cell3);
         PrintDoubleLinkedList(list);

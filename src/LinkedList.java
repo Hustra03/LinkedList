@@ -10,6 +10,11 @@ public class LinkedList {
         return this.firstCell;
     }
 
+    
+    public void setFirstCell(Cell NewFirstCell) {
+        this.firstCell = NewFirstCell;
+    }
+
     void add(int item) {
         this.firstCell = new Cell(item, this.firstCell);
     }
@@ -94,6 +99,7 @@ public class LinkedList {
             nxt = nxt.tail;
         }
         nxt.setTail(b.getFirstCell());
+        b.setFirstCell(null);
     }
 
 }

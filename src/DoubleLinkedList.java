@@ -17,7 +17,6 @@ public class DoubleLinkedList {
     void add(int item) {
         DoubleLinkedCell newFirstCell = new DoubleLinkedCell(item, this.firstCell, null);
         if (this.firstCell != null) {
-
             this.firstCell.setPreviousCell(newFirstCell);
         }
         this.firstCell = newFirstCell;
@@ -35,13 +34,9 @@ public class DoubleLinkedList {
     int length() {
         int length = 0;
         DoubleLinkedCell nxt = this.firstCell;
-        while (nxt.tail != null) {
+        while (nxt != null) {
             nxt = nxt.tail;
             length++;
-
-            if (length > 10) {
-                break;
-            }
         }
         return length;
     }
@@ -101,5 +96,6 @@ public class DoubleLinkedList {
         }
         nxt.setTail(b.getFirstCell());
         nxt.getTail().setPreviousCell(nxt);
+        b.setFirstCell(null);
     }
 }
