@@ -27,7 +27,7 @@ public class DoubleLinkedList {
             this.firstCell.setPreviousCell(newFirstCell);
         }
         newFirstCell.setPreviousCell(null);
-        newFirstCell.setTail(this.firstCell); 
+        newFirstCell.setTail(this.firstCell);
         this.firstCell = newFirstCell;
     }
 
@@ -43,43 +43,40 @@ public class DoubleLinkedList {
 
     boolean find(int item) {
         DoubleLinkedCell nxt = this.firstCell;
-        while (nxt.tail != null) {
-            nxt = nxt.tail;
+        while (nxt != null) {
             if (nxt.getHead() == item) {
                 return true;
             }
+            nxt = nxt.tail;
+
         }
         return false;
     }
 
     void remove(int item) {
 
-        if (firstCell.getHead() != item) {
             DoubleLinkedCell nxt = this.firstCell;
-            while (nxt.tail != null) {
-                nxt = nxt.tail;
+            while (nxt != null) {
                 if (nxt.getHead() == item) {
                     nxt.previousCell.setTail(nxt.getTail());
                     nxt.getTail().setPreviousCell(nxt.previousCell);
                     break;
                 }
+                nxt = nxt.tail;
             }
-        } else {
-            this.firstCell = this.firstCell.getTail();
-        }
     }
 
     void unlink(DoubleLinkedCell item) {
         if (firstCell != item) {
 
-           DoubleLinkedCell prv= item.getPreviousCell();
-           DoubleLinkedCell nxt= item.getTail();
-           if (nxt!=null) {
-            
-           nxt.setPreviousCell(prv);
-           }
-           prv.setTail(nxt);
-            
+            DoubleLinkedCell prv = item.getPreviousCell();
+            DoubleLinkedCell nxt = item.getTail();
+            if (nxt != null) {
+
+                nxt.setPreviousCell(prv);
+            }
+            prv.setTail(nxt);
+
         } else {
             if (firstCell == null) {
                 this.firstCell = null;
